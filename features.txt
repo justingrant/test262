@@ -108,6 +108,10 @@ json-parse-with-source
 # https://github.com/tc39/proposal-iterator-helpers
 iterator-helpers
 
+# Time Zone Identifier Canonicalization
+# https://github.com/tc39/proposal-canonical-tz
+time-zone-canonicalization
+
 ## Standard language features
 #
 # Language features that have been included in a published version of the
