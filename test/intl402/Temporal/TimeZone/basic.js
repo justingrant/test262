@@ -4,15 +4,18 @@
 /*---
 esid: sec-temporal.timezone
 description: Basic tests for the Temporal.TimeZone constructor.
-features: [Temporal]
+features: [Temporal, time-zone-canonicalization]
 ---*/
 
 const valid = [
   ["Europe/Vienna"],
   ["America/New_York"],
   ["Africa/CAIRO", "Africa/Cairo"],
-  ["Asia/Ulan_Bator", "Asia/Ulaanbaatar"],
-  ["GMT", "UTC"],
+  ["africa/cairo", "Africa/Cairo"],
+  ["Asia/Ulaanbaatar"],
+  ["Asia/Ulan_Bator"],
+  ["UTC"],
+  ["GMT"]
 ];
 for (const [zone, id = zone] of valid) {
   const result = new Temporal.TimeZone(zone);

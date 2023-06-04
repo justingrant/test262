@@ -5,7 +5,7 @@
 esid: sec-temporal.timezone
 description: >
   TimeZone constructor accepts link names as its input.
-features: [Temporal]
+features: [Temporal, time-zone-canonicalization]
 ---*/
 
 const testCases = [
@@ -135,6 +135,6 @@ const testCases = [
 ];
 
 for (let id of testCases) {
-  // Doesn't throw a RangeError.
-  new Temporal.TimeZone(id);
+  const tz = new Temporal.TimeZone(id);
+  assert.sameValue(tz.id, id);
 }
