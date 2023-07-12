@@ -1,4 +1,4 @@
-// Copyright (C) 2022 Igalia, S.L. All rights reserved.
+// Copyright (C) 2023 Justin Grant. All rights reserved.
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
@@ -8,6 +8,7 @@ features: [Temporal, time-zone-canonicalization]
 ---*/
 
 const timeZoneIdentifiers = [
+  // IANA TZDB Zone names
   'Africa/Abidjan',
   'Africa/Algiers',
   'Africa/Bissau',
@@ -58,7 +59,7 @@ const timeZoneIdentifiers = [
   'America/Cayenne',
   'America/Chicago',
   'America/Chihuahua',
-  // 'America/Ciudad_Juarez',
+  // 'America/Ciudad_Juarez' // uncomment after Node supports this ID added in TZDB 2022g
   'America/Costa_Rica',
   'America/Cuiaba',
   'America/Danmarkshavn',
@@ -359,6 +360,8 @@ const timeZoneIdentifiers = [
   'Pacific/Tarawa',
   'Pacific/Tongatapu',
   'WET',
+
+  // IANA TZDB Link names
   'Africa/Accra',
   'Africa/Addis_Ababa',
   'Africa/Asmara',
@@ -607,6 +610,11 @@ const timeZoneIdentifiers = [
   'Zulu'
 ];
 
+// We want to test all available named time zone identifiers (both primary and non-primary),
+// but no ECMAScript built-in API exposes that list. So we use a union of two sources:
+// 1. A hard-coded list of Zone and Link identifiers from the 2022g version of IANA TZDB.
+// 2. Canonical IDs exposed by Intl.supportedValuesOf('timeZone'), which ensures that IDs
+//    added to TZDB later than 2022g will be tested. (New IDs are almost always added as primary.)
 const ids = [...new Set([...timeZoneIdentifiers, ...Intl.supportedValuesOf('timeZone')])];
 for (const id of ids) {
   const lower = id.toLowerCase();
