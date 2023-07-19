@@ -21,12 +21,12 @@ const primitives = [
   "1994-11-05T13:15:30-25:00",
   7,
   4.2,
-  12n,
+  12n
 ];
 
 const tzUTC = new Temporal.TimeZone("UTC");
 for (const primitive of primitives) {
-  assert.throws(RangeError, () => tzUTC.equals(primitive));
+  assert.throws(typeof primitive === "string" ? RangeError : TypeError, () => tzUTC.equals(primitive));
 }
 
 const symbol = Symbol();

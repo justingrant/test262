@@ -7,16 +7,16 @@ description: Offset string time zones compare as expected
 features: [Temporal, time-zone-canonicalization]
 ---*/
 
-const zdt = new Temporal.ZonedDateTime(0n, 'America/Los_Angeles');
-const otz1 = new Temporal.TimeZone('+05:30');
-const otz2 = new Temporal.TimeZone('+05:30:00.000');
-const tz = new Temporal.TimeZone('Asia/Kolkata');
+const zdt = new Temporal.ZonedDateTime(0n, "America/Los_Angeles");
+const otz1 = new Temporal.TimeZone("+05:30");
+const otz2 = new Temporal.TimeZone("+0530");
+const tz = new Temporal.TimeZone("Asia/Kolkata");
 assert.sameValue(otz1.equals(otz2), true);
 assert.sameValue(otz2.equals(otz1), true);
-assert.sameValue(otz1.equals('+05:30:00.000'), true);
+assert.sameValue(otz1.equals("+05:30"), true);
 assert.sameValue(otz1.equals(zdt.withTimeZone(otz2)), true);
 assert.sameValue(otz1.equals(zdt.withTimeZone(otz2).toString()), true);
 assert.sameValue(otz1.equals(tz), false);
-assert.sameValue(otz1.equals('Asia/Kolkata'), false);
+assert.sameValue(otz1.equals("Asia/Kolkata"), false);
 assert.sameValue(otz1.equals(zdt.withTimeZone(tz)), false);
 assert.sameValue(otz1.equals(zdt.withTimeZone(tz).toString()), false);

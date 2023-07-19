@@ -25,13 +25,17 @@ for (const object of objectsEqualUTC) {
 
 const objectsEqual0000 = [
   new Temporal.TimeZone("+00:00"),
-  new Temporal.TimeZone("+00:00:00"),
+  new Temporal.TimeZone("+0000"),
+  new Temporal.TimeZone("+00"),
   new CustomTimeZone("+00:00"),
-  new CustomTimeZone("+00:00:00"),
+  new CustomTimeZone("+0000"),
+  new CustomTimeZone("+00"),
   { id: "+00:00", getPossibleInstantsFor: null, getOffsetNanosecondsFor: null },
-  { id: "+00:00:00", getPossibleInstantsFor: null, getOffsetNanosecondsFor: null },
+  { id: "+0000", getPossibleInstantsFor: null, getOffsetNanosecondsFor: null },
+  { id: "+00", getPossibleInstantsFor: null, getOffsetNanosecondsFor: null },
   new Temporal.ZonedDateTime(0n, "+00:00"),
-  new Temporal.ZonedDateTime(0n, "+00:00:00")
+  new Temporal.ZonedDateTime(0n, "+0000"),
+  new Temporal.ZonedDateTime(0n, "+00")
 ];
 
 const tz0000 = new Temporal.TimeZone("+00:00");
@@ -53,4 +57,3 @@ for (const object of objectsNotEqual) {
   const result = tzUTC.equals(object);
   assert.sameValue(result, false);
 }
-
